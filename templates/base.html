@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{% block title %}LifeAdmin{% endblock %} · LifeAdmin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static',filename='style.css') }}"></head>
+<body><div class="app-shell">
+<aside class="sidebar"><a class="brand" href="{{ url_for('dashboard') }}"><span class="brand-mark">L</span><span><b>LifeAdmin</b><small>PERSONAL INTELLIGENCE</small></span></a>
+<div class="nav-label">WORKSPACE</div><nav>
+<a class="{{ 'active' if active=='dashboard' else '' }}" href="{{ url_for('dashboard') }}"><span class="nav-icon">▦</span> Overview</a>
+<a class="{{ 'active' if active=='documents' else '' }}" href="{{ url_for('documents') }}"><span class="nav-icon">▤</span> My documents <span class="nav-count">{{ (data.total if data is defined else '') }}</span></a>
+<a class="{{ 'active' if active=='privacy' else '' }}" href="{{ url_for('privacy') }}"><span class="nav-icon">⬡</span> Privacy center</a></nav>
+<div class="sidebar-bottom"><div class="secure-card"><span class="secure-icon">✳</span><div><b>Your data stays yours</b><p>Local-first storage. No account required.</p></div></div><div class="profile"><div class="avatar">NG</div><div><b>Personal workspace</b><small>Local environment</small></div><span class="online"></span></div></div></aside>
+<main class="main-area"><header class="topbar"><div class="breadcrumb">Workspace <span>/</span> <b>{% block crumb %}Overview{% endblock %}</b></div><div class="top-actions"><span class="local-pill"><i></i> Local mode</span><a class="icon-btn" href="{{ url_for('privacy') }}" title="Privacy">⌘</a><div class="top-avatar">N</div></div></header>
+<section class="page-content">{% with messages=get_flashed_messages(with_categories=true) %}{% if messages %}<div class="flashes">{% for category,message in messages %}<div class="flash {{ category }}">{{ message }}<button onclick="this.parentElement.remove()">×</button></div>{% endfor %}</div>{% endif %}{% endwith %}{% block content %}{% endblock %}</section>
+<footer class="footer"><span>LifeAdmin · Your personal information, organized.</span><span>Private by design <b>·</b> Built for everyday life</span></footer></main></div><script src="{{ url_for('static',filename='app.js') }}"></script></body></html>
