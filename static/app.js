@@ -1,0 +1,2 @@
+document.querySelectorAll("[data-question]").forEach(el=>el.addEventListener("click",e=>{e.preventDefault();const input=document.querySelector('input[name="question"]');if(input){input.value=el.dataset.question;input.focus();}}));
+const uploadForm=document.getElementById("uploadForm");if(uploadForm){uploadForm.addEventListener("submit",()=>{const btn=uploadForm.querySelector('button[type="submit"]');if(btn){btn.disabled=true;btn.textContent="Analyzing document…";}});}
